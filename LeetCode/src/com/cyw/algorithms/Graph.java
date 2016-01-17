@@ -1,5 +1,9 @@
 package com.cyw.algorithms;
 
+/**
+ * 关于图的一些算法
+ * @author cyw
+ */
 public class Graph {
 	
 	/*
