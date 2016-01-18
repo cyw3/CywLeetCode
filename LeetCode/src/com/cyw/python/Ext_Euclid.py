@@ -11,4 +11,4 @@ def Ext_Euclid ( a , b ):
         print(q)
         return x , y , q
     
-a = Ext_Euclid(47,30)
+a = Ext_Euclid(17,3120)

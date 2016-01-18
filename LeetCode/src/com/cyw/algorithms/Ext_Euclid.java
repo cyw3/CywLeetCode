@@ -25,7 +25,7 @@ public class Ext_Euclid {
 	}
 	
 	public static void main(String [] args){
-		int[] result = getEx(47, 31);
+		int[] result = getEx(17, 12);
 		System.out.println(result[0]+" ;"+result[1]+" ;"+result[2]);
 //		System.out.println(Math.pow(2,3));
 	}

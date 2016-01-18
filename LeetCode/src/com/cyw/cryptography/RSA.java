@@ -44,6 +44,16 @@ public class RSA {
 		this.n = p*q;
 		this.fn = (p-1)*(q-1);
 		this.e = fn-1;
+		generateD(e, fn);
+	}
+	
+	public RSA(long p, long q,long e){
+		this.p = p;
+		this.q = q;
+		this.n = p*q;
+		this.fn = (p-1)*(q-1);
+		this.e = e;
+		generateD(e, fn);
 	}
 	
 	public long getFn(){
@@ -70,13 +80,46 @@ public class RSA {
 		}
 	}
 	
-	private long generateD(){
+	private long generateD(long e, long fn){
 //		e*d + fn*y == 1;
 		long[] result = getEx(e, fn);
 		this.d = result[0];
 		return result[0];
 	}
 	
+	public long getP() {
+		return p;
+	}
+	public void setP(long p) {
+		this.p = p;
+	}
+	public long getQ() {
+		return q;
+	}
+	public void setQ(long q) {
+		this.q = q;
+	}
+	public long getN() {
+		return n;
+	}
+	public void setN(long n) {
+		this.n = n;
+	}
+	public long getE() {
+		return e;
+	}
+	public void setE(long e) {
+		this.e = e;
+	}
+	public long getD() {
+		return d;
+	}
+	public void setD(long d) {
+		this.d = d;
+	}
+	public void setFn(long fn) {
+		this.fn = fn;
+	}
 	/**
 	 * 过程：
 	 * （1）乙方生成两把密钥（公钥和私钥）。公钥是公开的，任何人都可以获得，私钥则是保密的。
@@ -95,16 +138,38 @@ public class RSA {
 	/**
 	 * 加密
 	 */
-	public long encryption(long m){
+	public long encryption(long m, long[] re){
 //		m^e ≡ c (mod n)
+		long n = re[0];
+		long e = re[1];
+		System.out.println("e:"+e);
 		return (long) (Math.pow(m, e)%n);
 	}
 	/**
 	 * 解密
 	 * @return 
 	 */
-	public long decryption(long c){
+	public long decryption(long c, long[] re){
 //		c^d ≡ m (mod n)
+		long n = re[0];
+		long d = re[1];
+		System.out.println("d:"+d);
 		return (long) (Math.pow(c, d)%n);
+	}
+	
+	
+	public static void main(String [] args){
+		RSA r = new RSA(3,7,17);
+		long[] pk = r.generatePublicKey();
+		long[] prk = r.generatePrivateKey();
+		System.out.println(r.getN());
+		System.out.println(r.getFn());
+		System.out.println(r.getD());
+		System.out.println(r.getE());
+		System.out.println(r.encryption(3, pk));
+		System.out.println(r.decryption(12,prk));
+		
+		System.out.println(Math.pow(3, 17)%21);
+		System.out.println(Math.pow(12, 5)%21);
 	}
 }
