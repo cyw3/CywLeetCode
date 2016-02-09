@@ -5,8 +5,6 @@ import java.util.Random;
 /**
  * BPNN.
  * http://fantasticinblur.iteye.com/blog/1465497
- * @author RenaQiu
- * 
  */
 public class BP {
 	/**

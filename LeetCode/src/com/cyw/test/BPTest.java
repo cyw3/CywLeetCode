@@ -38,6 +38,7 @@ public class BPTest {
 				double[] binary = new double[32];
 				int index = 31;
 				do {
+					//记录value的值
 					binary[index--] = (value & 1);
 					value >>>= 1;
 				} while (value != 0);
@@ -46,7 +47,7 @@ public class BPTest {
 			}
 		}
 
-		System.out.println("训练完毕，下面请输入一个任意数字，神经网络将自动判断它是正数还是复数，奇数还是偶数。");
+		System.out.println("训练完毕，下面请输入一个任意数字，神经网络将自动判断它是正数还是负数，奇数还是偶数。");
 
 		while (true) {
 			byte[] input = new byte[10];
