@@ -19,7 +19,7 @@ public class Cyw_3 {
     		end++;
     		countMap.put(s.charAt(i)+"", countMap.getOrDefault(s.charAt(i)+"", 0)+1);
     		//相当于截去重复了的一段。
-    		//遍历其中的不重复字符串
+    		//遍历该字符串中的所有不重复字符串。把原字符串分为一段一段的。
     		while(countMap.get(s.charAt(i)+"") > 1){
     			countMap.put(s.charAt(start)+"", countMap.get(s.charAt(start)+"")-1);
     			start++;
