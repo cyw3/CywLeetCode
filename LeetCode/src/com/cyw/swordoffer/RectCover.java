@@ -9,7 +9,27 @@ package com.cyw.swordoffer;
  *
  */
 public class RectCover {
+	//1、最忧子结构		2、子问题重叠
+	//所以，也是动态规划的问题
+	//其实也是减一减二的问题，也是斐波那契数列
     public int RectCover(int target) {
-
+    	if(target<=0)
+    		return 0;
+    	if(target==1)
+    		return 1;
+    	if(target==2)
+    		return 2;
+    	
+    	int[] temp = new int[target+1];
+    	temp[0] = 0;
+    	temp[1] = 1;
+    	temp[2] = 2;
+    	
+    	int i = 3;
+    	while(i<=target){
+    		temp[i] = temp[i-1]+temp[i-2];
+    		i++;
+    	}
+    	return temp[target];
     }
 }
