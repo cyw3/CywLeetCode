@@ -9,7 +9,12 @@ public class MinNumberInRotateArray {
 	 * @param array 旋转数组
 	 * @return
 	 */
-    public int minNumberInRotateArray(int [] array) {
+	/**
+	 * 法1、遍历O(n)
+	 * 法2、二分查找法O(l	gn)
+	 * 
+	 */
+    public int minNumberInRotateArray1(int [] array) {
     	int len = array.length;
     	if(array==null||len==0){  
     		return 0;
@@ -20,5 +25,54 @@ public class MinNumberInRotateArray {
     			break;
     	}
 		return array[i];
+    }
+    
+    /**
+     * 
+     * @param array
+     * @return
+     * @throws Exception 
+     */
+    public int minNumberInRotateArray2(int [] array) throws Exception {
+    	//三个指针，前中后
+    	if(array==null || array.length<=0){
+    		throw new Exception("array==null || array.length<=0");
+    	}
+    	int head = 0;
+    	int last = array.length-1;
+    	int mid = head;
+    	
+    	while(array[head]>=array[last]){
+    		if(last-head==1){
+    			mid = last;
+    			break;
+    		}
+    		
+    		mid = (head+last)/2;
+    		if(array[mid]>=array[head]){
+    			head = mid;
+    		}else if(array[mid]<=array[last]){
+    			last = mid;
+    		}
+    	}
+		return array[mid];
+    }
+//    
+//    正确做法需要分为：
+//    1.数组为空
+//    2.部分旋转，例如由（1,2,3,4,5）旋转为（3,4,5,1,2），此时只需要遍历数组，找到当前数比前面的数小的数即可。
+//    3.完全旋转，例如由（1,2,3,4,5）旋转为（1,2,3,4,5），此时第一个数最小。
+    public int minNumberInRotateArray3(int[] rotateArray) {
+ 
+        //数组为空时
+        if(rotateArray.length == 0)
+            return -1;
+        //前部分数据旋转
+        for(int i = 0; i < rotateArray.length - 1; i++){
+            if (rotateArray[i] > rotateArray[i + 1])
+                return rotateArray[i + 1];
+        }
+        //全部数据旋转，相当于没有旋转，最小数即为第一个数
+        return rotateArray[0];
     }
 }
