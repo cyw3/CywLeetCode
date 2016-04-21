@@ -29,7 +29,23 @@ public class MirrorTree {
 	    }
 	}
 	
+	/**
+	 * 遍历树的同时交换非叶节点的左右子节点
+	 * 递归，前序遍历
+	 * @param root
+	 */
     public void Mirror(TreeNode root) {
+        if(root == null) return;
+        //是否是叶节点
+        if(root.left==null&&root.right==null)return;
         
+        //交换左右结点
+        TreeNode tnTemp = root.left;
+        root.left = root.right;
+        root.right = tnTemp;
+        
+        //继续遍历交换
+        Mirror(root.left);
+        Mirror(root.right);
     }
 }
