@@ -5,6 +5,13 @@ public class Point{
 	private float y;	    //Y坐标
 	private double arCos;	//与P0点的角度
 	
+	public Point(float x, float y){
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Point(){}
+	
 	public float getX() {
 		return x;
 	}
