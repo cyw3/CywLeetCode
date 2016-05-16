@@ -11,49 +11,75 @@ package com.cyw.algorithms.sort;
  *
  */
 public class QuickSort {
-	public static int[] quickSort(int[] A, int p, int r){
-		if(p<r){
-			int[] B = new int[A.length];
-			int[] C = new int[A.length];
-			int q=partition(A, p, r);
-			B = quickSort(A, p, q-1);
-			C = quickSort(A, q+1, r);
-			
-			for(int i=p;i<q;i++){
-				A[i] = B[i];
-			}
-			for(int i=q+1;i<=r;i++){
-				A[i] = C[i];
-			}
-			return A;
-		}
-		return A;
-	}
-
-	//A[r]为主元x
-	private static int partition(int[] A, int p, int r) {
-		int x=A[r];
-		int i=p-1;
-		for(int j=p;j<=r-1;j++){
-			if(A[j]<=x){
-				i++;
-				//exchange A[i] with A[j]
-				A[i] = A[i] ^ A[j];
-				A[j] = A[i] ^ A[j];
-				A[i] = A[i] ^ A[j];
-			}
-		}
-		A[i+1] = A[i+1] ^ A[r];
-		A[r] = A[i+1] ^ A[r];
-		A[i+1] = A[i+1] ^ A[r];
-		return i+1;
-	}
 	
 	public static void main(String [] args){
 		int[] A = {5, 2, 4, 6, 1, 3};
-		int[] B = quickSort(A, 0, A.length-1);
-		for(int i=0;i<B.length;i++){
-			System.out.print(B[i]);
+		quickSort(A, 0, A.length-1);
+		for(int i=0;i<A.length;i++){
+			System.out.print(A[i]);
 		}
 	}
+	
+	/**
+     * description : 快速排序
+     * @param pData
+     * @param left
+     * @param right
+     * @return
+     */
+    public static void quickSort(int n[], int left, int right) {
+        int dp;
+        if (left < right) {
+            dp = partition(n, left, right);
+            quickSort(n, left, dp - 1);
+            quickSort(n, dp + 1, right);
+        }
+    }
+    
+  //方法1、A[r]为主元x，i、j为确定左右的标记
+  	private static int partition(int[] A, int p, int r) {
+  		int x=A[r];
+  		int i=p-1;
+  		int temp =0 ;
+  		for(int j=p;j<=r-1;j++){
+  			if(A[j]<=x){
+  				i++;
+  				//exchange A[i] with A[j]
+//  				A[i] = A[i] ^ A[j];
+//  				A[j] = A[i] ^ A[j];
+//  				A[i] = A[i] ^ A[j];
+  				temp = A[i];
+  				A[i] = A[j];
+  				A[j] = temp;
+  			}
+  		}
+  		//exchange A[i+1] with A[r]
+//  		A[i+1] = A[i+1] ^ A[r];
+//  		A[r] = A[i+1] ^ A[r];
+//  		A[i+1] = A[i+1] ^ A[r];
+  		temp = A[i+1];
+  		A[i+1] = A[r];
+  		A[r] = temp;
+  		return i+1;
+  	}
+  	
+		/**
+		 * 方法2、左右指针
+		 */
+//    public static int partition(int n[], int left, int right) {
+//    	//主元
+//        int pivot = n[left];
+//        while (left < right) {
+//            while (left < right && n[right] >= pivot)
+//                right--;
+//            if (left < right)
+//                n[left++] = n[right];
+//            while (left < right && n[left] <= pivot)
+//                left++;
+//            if (left < right)
+//                n[right--] = n[left];
+//        }
+//        n[left] = pivot;
+//        return left;
+//    }
 }
