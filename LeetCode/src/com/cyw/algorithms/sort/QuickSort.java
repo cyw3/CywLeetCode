@@ -48,4 +48,12 @@ public class QuickSort {
 		A[i+1] = A[i+1] ^ A[r];
 		return i+1;
 	}
+	
+	public static void main(String [] args){
+		int[] A = {5, 2, 4, 6, 1, 3};
+		int[] B = quickSort(A, 0, A.length-1);
+		for(int i=0;i<B.length;i++){
+			System.out.print(B[i]);
+		}
+	}
 }

@@ -40,7 +40,7 @@ public class HeapSort {
 			A[largest] = A[i] - A[largest];
 			A[i] = A[i]-A[largest];
 			
-			//第二种方法
+			//第二种方法 异或
 //			A[i] = A[i] ^ A[largest];
 //			A[largest] = A[i] ^ A[largest];
 //			A[i] = A[i] ^ A[largest];
@@ -51,30 +51,35 @@ public class HeapSort {
 	}
 	
 	//建堆O（n）
-	public static int[] buildMaxHeap(int[] A){
-		for(int i=A.length/2-1;i>=0;i--){
+	public static void buildMaxHeap(int[] A, int len){
+		for(int i=len/2-1;i>=0;i--){
 			A = maxHeapify(A, i);
 		}
-		return A;
+		return;
 	}
 	
-//	public static int[] heapSort(int[] A){
-//		A = buildMaxHeap(A);
-//		for(int i=A.length-1;i<=1;i--){
-//			//exchange A[i] with A[1]
-//			A[i] = A[i] ^ A[1];
-//			A[1] = A[i] ^ A[1];
-//			A[i] = A[i] ^ A[1];
-//			
-//			
-//		}
-//	}
+	//堆排序 O(nlgn)
+	public static void heapSort(int[] A){
+		for(int i=A.length;i>1;i--){
+			buildMaxHeap(A, i);
+			System.out.println(A[0]);
+			//exchange A[i] with A[1]
+			A[i-1] = A[i-1] ^ A[0];
+			A[0] = A[i-1] ^ A[0];
+			A[i-1] = A[i-1] ^ A[0];
+		}
+	}
 	
 	public static void main(String [] args){
-		int[] A = new int[]{4, 1, 3, 2, 16, 9, 10, 14, 8 ,7};
-		int[] B = buildMaxHeap(A);
-		for(int i=0;i<B.length;i++){
-			System.out.print(B[i]);
+		int[] A = new int[]{4, 1, 3, 2, 6, 9, 0, 5, 8 ,7};
+		buildMaxHeap(A, A.length-1);
+//		for(int i=0;i<B.length;i++){
+//			System.out.print(B[i]);
+//		}
+		
+//		heapSort(A);
+		for(int i=0;i<A.length;i++){
+			System.out.print(A[i]);
 		}
 	}
 	
