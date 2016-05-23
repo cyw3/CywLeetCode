@@ -2,12 +2,6 @@ package com.cyw.algorithms;
 
 import java.util.*;   
 
-/**
- * 凸包算法参考：
- * http://blog.csdn.net/bone_ace/article/details/46239187
- * @author cyw
- *
- */
 public class ConvexHullDivideAndConquer {
 
 	/*

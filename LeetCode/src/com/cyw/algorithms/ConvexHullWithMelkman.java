@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * Melkman求凸包算法
- * http://xiaoming2xiaohong.iteye.com/blog/1297456
  * @author cyw
  *Melkman凸包算法继承Graham-Scan算法的主要思想，并更近一步地采用双端队列，
  *动态地在队列两头进行增删操作，维护“凸性”。
