@@ -8,7 +8,7 @@ import java.util.*;
  * @author cyw
  *
  */
-public class ConvexHull {
+public class ConvexHullDivideAndConquer {
 
 	/*
 	*	分治法求凸包
@@ -21,11 +21,11 @@ public class ConvexHull {
 	      this.pts = pts;
 	  }
 
-	  public ConvexHull(List<Point> pts){
+	  public ConvexHullDivideAndConquer(List<Point> pts){
 	      this.pts=pts;
 	  }
 
-	  public ConvexHull(){
+	  public ConvexHullDivideAndConquer(){
 	  }
 	  
 	  //求凸包，结果存入lines中
@@ -135,7 +135,7 @@ public class ConvexHull {
 
 	
 	public static void main(String [] args){
-		ConvexHull ch = new ConvexHull();
+		ConvexHullDivideAndConquer ch = new ConvexHullDivideAndConquer();
 		List<Point> pts = new ArrayList<Point>();
 		pts.add(new Point(0,1));
 		pts.add(new Point(0,3));
