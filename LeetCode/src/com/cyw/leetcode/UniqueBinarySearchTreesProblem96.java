@@ -8,7 +8,7 @@ package com.cyw.leetcode;
  *
  */
 public class UniqueBinarySearchTreesProblem96 {
-	//可以使用递归 自底向上的dp。基于有序序列的个数，
+	//可以使用递归 自底向上的dp。基于有序序列的个数，左右子树的结点个数
     public int numTrees(int n) {
     	//从1开始
         if(n<=0) return 0;
@@ -20,12 +20,12 @@ public class UniqueBinarySearchTreesProblem96 {
         //迭代
         for(int i=2;i<=n;i++){
         	int sum = 0;
+        	//树的根节点依次为0-i
         	for(int j=0;j<=i-1;j++){
         		sum += cache[j] * cache[i-1-j];
         	}
         	cache[i] = sum;
         }
-        
         //输出
         return cache[n];
     }
