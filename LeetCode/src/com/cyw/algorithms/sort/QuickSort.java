@@ -36,7 +36,7 @@ public class QuickSort {
         }
     }
     
-  //方法1、A[r]为主元x，i、j为确定左右的标记
+  //方法1、单边排序。A[r]为主元x，i、j为确定左右的标记
   	private static int partition(int[] A, int p, int r) {
   		int x=A[r];
   		int i=p-1;
@@ -64,7 +64,7 @@ public class QuickSort {
   	}
   	
 		/**
-		 * 方法2、左右指针
+		 * 方法2、双边排序。左右指针
 		 */
 //    public static int partition(int n[], int left, int right) {
 //    	//主元
