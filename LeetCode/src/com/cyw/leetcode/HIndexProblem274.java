@@ -26,8 +26,34 @@ public class HIndexProblem274 {
         int len = citations.length;
         int[] cita = new int[len+1];
         for(int i=0;i<len;i++){
-        	
+        	if(citations[i]<len) cita[citations[i]]++;
+        	else cita[len]++;
         }
+        for(int i=len-1;i>=0;i--){
+        	cita[i] += cita[i+1];
+        }
+        int max;
+        for(int i=len;i>=0;i--){
+        	if(cita[i]>=i) return i;
+        }
+        return 0;
     }
+    
+    /*
+     * 
+     public int hIndex(int[] citations) {
+	    int n = citations.length, tot=0;
+	    int[] arr = new int[n+1];
+	    for (int i=0; i<n; i++) {
+	        if (citations[i]>=n) arr[n]++;
+	        else arr[citations[i]]++;
+	    }
+	    for (int i=n; i>=0; i--) {
+	        tot += arr[i];
+	        if (tot>=i) return i;
+	    }
+	    return 0;
+	}
+     */
 
 }
